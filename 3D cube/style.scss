@@ -1,0 +1,49 @@
+body {
+	background-color: #e14a80;
+}
+img {
+	aspect-ratio: 1/1;
+	object-fit: cover;
+	display: inline-block;
+	transform-style: preserve-3d;
+	position: absolute;
+	top: 10em;
+	border: solid white;
+
+	&#left {
+		transform: translateX(50%) rotateY(-90deg);
+	}
+	&#right {
+		transform: translateX(-50%) rotateY(90deg);
+	}
+	&#front {
+		transform: translateZ(150px);
+	}
+	&#back {
+		transform: translateZ(-150px);
+	}
+	&#top {
+		transform: rotateX(90deg) translateZ(150px);
+	}
+	&#bottom {
+		transform: rotateX(90deg) translateZ(-150px);
+	}
+}
+.image-container {
+	transform-style: preserve-3d;
+	animation: cube-rotation 40s linear alternate infinite;
+	margin: 10em 25vw;
+	&:hover {
+		position: relative;
+	}
+}
+@keyframes cube-rotation {
+	@for $i from 0 through 20 {
+		#{$i * 5%} {
+			transform: perspective(50cm)
+				rotateX(-40deg + $i * 20)
+				rotateY(0 - $i * 35deg)
+				rotateZ(30deg - $i * 30);
+		}
+	}
+}
